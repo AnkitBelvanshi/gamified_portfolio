@@ -1,5 +1,5 @@
 # ⛏️ ANKIT.DEV — Gamified Developer Portfolio
-
+My portfolio but make it Minecraft. Vibe-coded from scratch, pixel-sharp by choice.
 A voxel-themed, gamified developer portfolio built with **Next.js 16** and **Tailwind CSS v4**. The entire UI is designed as a Minecraft-inspired open-world interface — treating navigation as an inventory hotbar, projects as quest logs, skills as craftable artifacts, and contact as a mission dispatch center.
 
 **🌐 Live:** [portfolio-app-aabbccs-projects-690a9c12.vercel.app](https://portfolio-app-aabbccs-projects-690a9c12.vercel.app)
