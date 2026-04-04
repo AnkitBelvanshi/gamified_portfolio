@@ -1,26 +1,175 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===== VOXEL FORGE DESIGN SYSTEM ===== */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Primary (Grass/Life) --- */
+  --color-primary: #006e1c;
+  --color-primary-container: #4caf50;
+  --color-primary-fixed: #94f990;
+  --color-primary-fixed-dim: #78dc77;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #003c0b;
+  --color-on-primary-fixed: #002204;
+  --color-on-primary-fixed-variant: #005313;
+  --color-inverse-primary: #78dc77;
+
+  /* --- Secondary (Earth/Foundation) --- */
+  --color-secondary: #7a5649;
+  --color-secondary-container: #fdcdbc;
+  --color-secondary-fixed: #ffdbcf;
+  --color-secondary-fixed-dim: #ebbcac;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #795548;
+  --color-on-secondary-fixed: #2e150b;
+  --color-on-secondary-fixed-variant: #603f33;
+
+  /* --- Tertiary (Water/Depth) --- */
+  --color-tertiary: #0c6780;
+  --color-tertiary-container: #5ca4c0;
+  --color-tertiary-fixed: #baeaff;
+  --color-tertiary-fixed-dim: #89d0ed;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #003848;
+  --color-on-tertiary-fixed: #001f29;
+  --color-on-tertiary-fixed-variant: #004d62;
+
+  /* --- Surface System --- */
+  --color-surface: #faf9f9;
+  --color-surface-bright: #faf9f9;
+  --color-surface-dim: #dadada;
+  --color-surface-tint: #006e1c;
+  --color-surface-variant: #e3e2e2;
+  --color-surface-container: #efeeed;
+  --color-surface-container-low: #f4f3f3;
+  --color-surface-container-high: #e9e8e8;
+  --color-surface-container-highest: #e3e2e2;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #3f4a3c;
+  --color-inverse-surface: #2f3131;
+  --color-inverse-on-surface: #f1f0f0;
+
+  /* --- Background --- */
+  --color-background: #faf9f9;
+  --color-on-background: #1a1c1c;
+
+  /* --- Error --- */
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  /* --- Outline --- */
+  --color-outline: #6f7a6b;
+  --color-outline-variant: #becab9;
+
+  /* --- Voxel Sky --- */
+  --color-voxel-sky: #87ceeb;
+
+  /* --- Typography --- */
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+
+  /* --- Voxel Borders (0px radius) --- */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== GLOBAL STYLES ===== */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-voxel-sky);
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.2)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.2));
+  background-size: 100px 100px;
+  background-position: 0 0, 50px 50px;
+  font-family: var(--font-body);
+  color: var(--color-on-background);
+  min-height: 100vh;
+}
+
+/* ===== MATERIAL SYMBOLS ===== */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.fill-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ===== VOXEL UTILITY CLASSES ===== */
+
+/* Pixel-art style border (4-directional) */
+.pixel-border {
+  box-shadow:
+    0 -4px 0 0 #1a1c1c,
+    0 4px 0 0 #1a1c1c,
+    -4px 0 0 0 #1a1c1c,
+    4px 0 0 0 #1a1c1c;
+}
+
+/* Voxel button 3D press effect */
+.voxel-button-shadow {
+  box-shadow: 0px 4px 0px 0px #2f3131;
+}
+.voxel-button-shadow:active {
+  box-shadow: 0px 0px 0px 0px #2f3131;
+  transform: translateY(4px);
+}
+
+/* Voxel slab shadow (3D block offset) */
+.voxel-slab-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Inset slot (inventory style) */
+.voxel-slot-inset {
+  box-shadow: inset 4px 4px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Voxel border variants */
+.voxel-border-dirt {
+  border-bottom: 4px solid #4d362e;
+  border-right: 4px solid #4d362e;
+}
+.voxel-border-grass {
+  border-bottom: 4px solid #004d14;
+  border-right: 4px solid #004d14;
+}
+
+/* Pixel cloud effect */
+.pixel-cloud {
+  box-shadow: 20px 20px 0 0 #ffffff, 40px 20px 0 0 #ffffff, 60px 20px 0 0 #ffffff, 40px 0px 0 0 #ffffff;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-dim);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border: 2px solid var(--color-surface-dim);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary);
 }
