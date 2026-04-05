@@ -212,7 +212,7 @@ export default function SnakeGame() {
 
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-stone-200 border-4 border-stone-800 shadow-[8px_8px_0px_0px_rgba(40,40,40,1)] p-6 max-w-lg w-full flex flex-col gap-4 relative">
+          <div className="bg-stone-200 border-4 border-stone-800 shadow-[8px_8px_0px_0px_rgba(40,40,40,1)] p-6 pt-[40px] max-w-lg w-full flex flex-col gap-4 relative overflow-y-auto max-h-[90vh] custom-scrollbar">
             <button
               onClick={() => {
                 setIsOpen(false);
