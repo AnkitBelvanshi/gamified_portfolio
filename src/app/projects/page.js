@@ -2,68 +2,70 @@ import SideHUD from "@/components/SideHUD";
 
 export const metadata = {
   title: "Quest Log | ANKIT.DEV",
-  description: "Explore Ankit Belvanshi's data science projects — ML pipelines, analytics dashboards, data warehouses, and NLP toolkits.",
+  description: "Explore Ankit Belvanshi's ML & NLP projects — RAG Denoising, Suicide Risk Classification, and LexiSense semantic search.",
 };
 
 const PROJECTS = [
   {
-    title: "THE ML PIPELINE FORGE",
-    difficulty: "Hardcore",
-    reward: "+800 XP",
-    description: "An end-to-end machine learning pipeline built with Python, Apache Airflow, and TensorFlow. Automates data ingestion, feature engineering, model training, and deployment with CI/CD integration.",
-    icons: ["terminal", "memory"],
+    title: "THE RAG DENOISING FORGE",
+    difficulty: "Legendary",
+    reward: "+1000 XP (Thesis in Progress)",
+    description: "Building a lightweight denoising model as a pre-processing layer to make RAG systems robust against typos and OCR errors. Designing a comprehensive benchmark to evaluate real-world resilience. Master's Thesis — Ongoing.",
+    icons: ["neurology", "auto_fix_high"],
+    techStack: ["Python", "RAG", "LLMs", "NLP"],
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDckIGAwFzCBwRQbKdvRsLQj_L_Sf_hMNhwNjt1mVozDigjyo0-La9ZrZZfbzFKnOzSXpFXFrztBzrJ2mzf3loIwxvxEU3YdYRSeWau9zi7AgcbJsTnZH1TU-Dl1m69fJbNG6poTFhXZowccaZhrncfWXdWPmblptHgjRVe49Sy1G6wf-XqKB_ogQGr6HqeAh0itJNptQJuJe-qHOWxeBV44MNldHN3VKpQn8L5rXonVfD0TpAwmYdPncecBAfi_KPXgfWzNyu-_W0",
     bgClass: "bg-primary-container",
-    link: "https://github.com/ankitbelvanshi",
+    link: "https://github.com/AnkitBelvanshi",
+    badge: "⚔️ MASTER'S THESIS",
   },
   {
-    title: "THE ANALYTICS DASHBOARD",
-    difficulty: "Survival",
-    reward: "New Skill: D3.js",
-    description: "A real-time analytics dashboard built with React and D3.js for visualizing complex datasets. Features interactive charts, drill-down capabilities, and WebSocket-powered live data streaming.",
-    icons: ["view_quilt", "bar_chart"],
+    title: "THE SUICIDE RISK CLASSIFIER",
+    difficulty: "Hardcore",
+    reward: "+800 XP | New Skill: LLM Fine-tuning",
+    description: "Hybrid ensemble of ML models (Logistic Regression, SVM, Random Forest, XGBoost) + LLMs (Llama2/3) for suicide risk detection from social media text. Achieved 95% accuracy.",
+    icons: ["psychology", "monitoring"],
+    techStack: ["Python", "Scikit-learn", "XGBoost", "PyTorch", "HuggingFace", "Llama3", "T5"],
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCii38d29UaOVJauB-nEGKpg_TkOxljolaEPQAGKTNsydzqHYVu0HWc1hMat1Mw7asNg63xJrRgFW_I8lO64ZOfS1n4Va-DDYI7N1gh6hgV-eHALzbOqkaFYtfvbuxe7coUruterpg0yN7W5s8O-qvpLqycPwyejNBAha6d-28e7r7nk0IHX5wHUUX4ZbmKOWIqL9qA27yZNjHm7QOccmWnNjT37PHKViT4S6uOyj7y4EqSZXT3RXD1tsa_oAXvqmPh1e-IuF8UV2Q",
     bgClass: "bg-tertiary-container",
-    link: "https://github.com/ankitbelvanshi",
+    link: "https://github.com/AnkitBelvanshi",
+    badge: "95% ACCURACY",
   },
   {
-    title: "THE DATA CAVERN",
-    difficulty: "Creative",
-    reward: "+500 XP",
-    description: "A scalable data warehouse solution using PostgreSQL and Apache Spark for processing millions of records. Implements star-schema design with optimized ETL pipelines.",
-    icons: ["database", "bolt"],
+    title: "LEXISENSE — THE BOOK ORACLE",
+    difficulty: "Survival",
+    reward: "+500 XP | New Asset: Semantic Search",
+    description: "Semantic book recommendation engine using Sentence Transformer embeddings, LangChain, and ChromaDB. Gradio dashboard with Zero-Shot Classification and Sentiment Analysis.",
+    icons: ["auto_stories", "search"],
+    techStack: ["Python", "NumPy", "Pandas", "Sentence Transformer", "ChromaDB"],
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCemDAkPTtJhl2dDtixF1ZzDgaiyrIL88R9eqN0DeZR7DHmmRLgcNeqWIMGL1Ir4cnP8wYZpfddEhKKrja8gXq8obo3Va59JJ5m1g3ycklw782TprpkT8Rblph5ktCPlN6DEMu3q9LGaysGx-WJvFES3hkL72OGDidWIdbGBkKaGBFT2bzv4v-9bl7e9CGq-Abt1i2t0Ub38yRWAKWqboy6ec0Wg8dah_6Smeh7mQdLGdMVF8ATQ01xqhndZay2XLVODNNlEBuhBh0",
     bgClass: "bg-secondary-container",
-    link: "https://github.com/ankitbelvanshi",
+    link: "https://github.com/AnkitBelvanshi",
+    badge: null,
   },
-  {
-    title: "THE NLP SANCTUM",
-    difficulty: "Survival",
-    reward: "New Asset Pack",
-    description: "A natural language processing toolkit leveraging transformers and BERT for sentiment analysis, text classification, and named entity recognition on large-scale text corpora.",
-    icons: ["code", "psychology"],
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC9ex5vHtUcjZeXXYuSD84Qeqdzlwzhg2onGITuHPhI-K0WgMfvUR2lsqOJrgOfHuII3h7f7FPEtjoJLgB9O6DzKaFK0CtbWLiOovtq_lxrBFH6Nc2pFokgfQLSKxv8_4YMQwDEP7sh-ROZrOp_biDixQUXvYcLTMATQBAGPe4EbPz2UrY78lKpgN2sbN1Mp-9qx8_sTB34Q4Is7Z6TAB5fy8b1EoTrfZroXVGRwkqpROQ0zvM9o8vpFkwShWOhUy73jmkyIRGA4lk",
-    bgClass: "bg-stone-300",
-    link: "https://github.com/ankitbelvanshi",
-  },
+];
+
+const CERTIFICATIONS = [
+  { name: "Machine Learning", issuer: "Coursera", icon: "⚔️", color: "bg-primary-container", borderColor: "border-on-primary-fixed-variant" },
+  { name: "Full Stack Development", issuer: "GeeksForGeeks", icon: "🛡️", color: "bg-tertiary-container", borderColor: "border-on-tertiary-fixed-variant" },
+  { name: "OCI 2025 AI Foundations", issuer: "Oracle", icon: "☁️", color: "bg-secondary-container", borderColor: "border-on-secondary-fixed-variant" },
 ];
 
 export default function ProjectsPage() {
   return (
     <>
       <SideHUD />
-      <div className="lg:ml-64 pt-24 pb-16 px-4 md:px-12">
+      <div className="pt-24 pb-16 px-4 md:px-12">
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="mb-12">
             <h1 className="font-headline text-5xl font-black uppercase tracking-tighter text-stone-900 mb-2">
-              QUEST LOG: DATA SCIENCE DEPLOYMENTS
+              QUEST LOG: ML & NLP DEPLOYMENTS
             </h1>
             <div className="h-2 w-48 bg-primary" />
           </div>
 
           {/* Project Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS.map((project) => (
               <div
                 key={project.title}
@@ -79,21 +81,34 @@ export default function ProjectsPage() {
                   <div className="absolute top-4 right-4 bg-stone-900 text-white px-3 py-1 font-headline font-bold text-xs uppercase">
                     Difficulty: {project.difficulty}
                   </div>
+                  {project.badge && (
+                    <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 font-headline font-bold text-[10px] uppercase">
+                      {project.badge}
+                    </div>
+                  )}
                 </div>
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-grow gap-4">
                   <div className="flex justify-between items-start">
-                    <h3 className="font-headline font-extrabold text-2xl uppercase leading-none">
+                    <h3 className="font-headline font-extrabold text-xl uppercase leading-none">
                       {project.title}
                     </h3>
-                    <span className="font-label text-xs font-bold text-primary-container bg-primary-container/10 px-2 py-1 shrink-0">
-                      {project.reward}
-                    </span>
                   </div>
+                  <span className="font-label text-xs font-bold text-primary-container bg-primary-container/10 px-2 py-1 self-start">
+                    {project.reward}
+                  </span>
                   <div className="bg-white/60 backdrop-blur-md p-4 border-2 border-stone-200">
                     <p className="font-body text-sm text-stone-700 leading-relaxed">
                       {project.description}
                     </p>
+                  </div>
+                  {/* Tech Stack Tags */}
+                  <div className="flex flex-wrap gap-1">
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="bg-surface-dim text-on-surface-variant px-2 py-0.5 text-[10px] font-headline font-bold uppercase">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                   <div className="mt-auto pt-4 flex items-center justify-between">
                     <div className="flex gap-2">
@@ -115,6 +130,35 @@ export default function ProjectsPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Certifications Section */}
+          <div className="mt-16">
+            <h2 className="font-headline text-3xl font-black uppercase tracking-tighter text-stone-900 mb-2">
+              ACHIEVEMENT BADGES
+            </h2>
+            <div className="h-2 w-32 bg-secondary mb-8" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {CERTIFICATIONS.map((cert) => (
+                <div
+                  key={cert.name}
+                  className={`${cert.color} p-6 border-b-4 border-r-4 ${cert.borderColor} flex items-center gap-4 hover:-translate-y-1 transition-transform duration-100`}
+                >
+                  <div className="w-14 h-14 bg-white/20 flex items-center justify-center text-3xl">
+                    {cert.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-headline font-bold text-sm uppercase text-white">
+                      {cert.name}
+                    </h3>
+                    <p className="text-xs font-medium text-white/80">
+                      {cert.issuer}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

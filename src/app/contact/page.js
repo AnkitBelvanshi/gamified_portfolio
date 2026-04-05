@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import SideHUD from "@/components/SideHUD";
 
 const CONTACT_PORTALS = [
   {
     title: "GITHUB PORTAL",
     subtitle: "Explore the code repositories...",
-    link: "https://github.com/ankitbelvanshi",
-    linkText: "github.com/ankitbelvanshi",
+    link: "https://github.com/AnkitBelvanshi",
+    linkText: "github.com/AnkitBelvanshi",
     icon: "code",
     bgClass: "bg-primary-container",
     borderClass: "border-on-primary-fixed-variant",
@@ -17,8 +18,8 @@ const CONTACT_PORTALS = [
   {
     title: "LINKEDIN NETWORK",
     subtitle: "Connect for professional opportunities...",
-    link: "https://linkedin.com/in/ankitbelvanshi",
-    linkText: "linkedin.com/in/ankitbelvanshi",
+    link: "https://linkedin.com/in/ankit-belvanshi",
+    linkText: "linkedin.com/in/ankit-belvanshi",
     icon: "share",
     bgClass: "bg-tertiary-container",
     borderClass: "border-on-tertiary-fixed-variant",
@@ -28,8 +29,8 @@ const CONTACT_PORTALS = [
   {
     title: "EMAIL DISPATCH",
     subtitle: "Send a direct transmission...",
-    link: "mailto:ankitbelvanshi@email.com",
-    linkText: "ankitbelvanshi@email.com",
+    link: "mailto:24mt0064@iitism.ac.in",
+    linkText: "24mt0064@iitism.ac.in",
     icon: "mail",
     bgClass: "bg-secondary-container",
     borderClass: "border-on-secondary-fixed-variant",
@@ -40,7 +41,7 @@ const CONTACT_PORTALS = [
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
-  const [submitStatus, setSubmitStatus] = useState(null); // null | 'sending' | 'success' | 'error'
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,76 +72,10 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Left Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 z-40 hidden lg:block">
-        <div className="h-full bg-stone-200 p-6 border-r-8 border-b-8 border-stone-400 shadow-[8px_8px_0px_0px_rgba(122,86,73,0.5)] flex flex-col gap-y-6 pt-24">
-          <div className="flex flex-col items-center text-center gap-2">
-            <div className="w-24 h-24 bg-primary border-4 border-on-primary-fixed-variant voxel-slab-shadow overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                alt="Ankit Belvanshi avatar"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoVn6QZIWT_y3HVQ3Cu1d_XQAvOpK3MVBZgCqDNvx3SjJwP5s590myeu4eO9a7njwQpu0z9vMvSDfE5ckKlkgQetbiBXVIurlz9ygYWeEBw4bojZTA2oadepsYXv14QaxciK4EdhXYl84673FcXALrEtSoBnrZkCwHLHVbikWb-3vp3pY4lj6OLe6lrToSbjNaS6cg8mzP_v3vli0NnDykw6RurYTUGUMgAnfjOaCItwMuVHU3istpMrTxjCwhuP0lKOo3n7DOy-8"
-              />
-            </div>
-            <h2 className="font-headline font-black text-xl text-stone-800 uppercase">
-              ANKIT.DEV
-            </h2>
-            <p className="font-label text-xs text-green-700 font-bold uppercase">
-              Level 42 Data Scientist
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {/* Stats Bars */}
-            <div className="space-y-1">
-              <div className="flex justify-between text-[10px] font-bold uppercase">
-                <span>Health</span><span>100/100</span>
-              </div>
-              <div className="h-4 bg-stone-300 border-2 border-stone-400 relative">
-                <div className="absolute inset-0 bg-error w-full" />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <div className="flex justify-between text-[10px] font-bold uppercase">
-                <span>Hunger</span><span>85%</span>
-              </div>
-              <div className="h-4 bg-stone-300 border-2 border-stone-400 relative">
-                <div className="absolute inset-0 bg-secondary w-[85%]" />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <div className="flex justify-between text-[10px] font-bold uppercase">
-                <span>XP</span><span>12,450</span>
-              </div>
-              <div className="h-4 bg-stone-300 border-2 border-stone-400 relative">
-                <div className="absolute inset-0 bg-tertiary w-[60%]" />
-              </div>
-            </div>
-          </div>
-
-          <nav className="flex flex-col gap-2">
-            <div className="flex items-center gap-3 p-2 text-stone-600 font-headline text-sm uppercase font-bold hover:bg-stone-300 transition-all cursor-pointer">
-              <span className="material-symbols-outlined">person</span> Character
-            </div>
-            <div className="flex items-center gap-3 p-2 text-stone-600 font-headline text-sm uppercase font-bold hover:bg-stone-300 transition-all cursor-pointer">
-              <span className="material-symbols-outlined">shield</span> Equipment
-            </div>
-            <div className="flex items-center gap-3 p-2 text-stone-600 font-headline text-sm uppercase font-bold hover:bg-stone-300 transition-all cursor-pointer">
-              <span className="material-symbols-outlined">leaderboard</span> Stats
-            </div>
-            <div className="flex items-center gap-3 p-2 bg-green-600 text-white shadow-[inset_4px_4px_0px_0px_rgba(0,0,0,0.2)] font-headline text-sm uppercase font-bold cursor-pointer">
-              <span className="material-symbols-outlined">assignment</span> Missions
-            </div>
-          </nav>
-
-          <button className="mt-auto bg-tertiary text-white py-3 font-headline font-bold uppercase text-xs border-b-4 border-r-4 border-on-tertiary-fixed-variant active:translate-y-1 active:translate-x-1 active:border-0 transition-all duration-100">
-            View Quest Log
-          </button>
-        </div>
-      </aside>
+      <SideHUD />
 
       {/* Main Content */}
-      <div className="lg:ml-64 pt-32 pb-20 px-4 md:px-6">
+      <div className="pt-32 pb-20 px-4 md:px-6">
         <section className="max-w-4xl mx-auto flex flex-col gap-8">
           <div className="bg-surface p-6 md:p-10 border-b-8 border-r-8 border-stone-400 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]">
             <header className="mb-12">

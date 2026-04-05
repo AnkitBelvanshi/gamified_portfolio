@@ -11,94 +11,101 @@ const SKILLS = [
     iconBg: "bg-yellow-400",
     iconBorder: "border-yellow-700",
     iconTextColor: "text-black",
-    description: "The foundational language of data science. Grants the wielder mastery over data manipulation, machine learning models, and automation scripts. Highly effective against unstructured data monsters.",
+    description: "The foundational language of ML and data science. Grants the wielder mastery over data manipulation, machine learning models, transformers, and automation scripts. Highly effective against unstructured data.",
     rarity: "Legendary Artifact",
     attributes: [
-      { name: "Data Processing", value: 95 },
-      { name: "ML Integration", value: 92 },
-      { name: "Clean Code Arch", value: 88 },
+      { name: "ML Integration", value: 95 },
+      { name: "LLM & Transformers", value: 90 },
+      { name: "Data Processing (NumPy/Pandas)", value: 88 },
     ],
   },
   {
-    name: "TensorFlow",
-    level: 88,
-    status: "SELECTED",
-    icon: "memory",
-    iconBg: "bg-[#4caf50]",
-    iconBorder: "border-[#003c0b]",
+    name: "PyTorch",
+    level: 85,
+    status: "EXPERT",
+    icon: "local_fire_department",
+    iconBg: "bg-orange-600",
+    iconBorder: "border-orange-900",
     iconTextColor: "text-white",
-    description: "A powerful deep learning framework. Enables the creation of neural architectures for complex pattern recognition and predictive modeling.",
+    description: "A powerful deep learning framework. Enables the creation of custom neural architectures, transformer models, and advanced research experiments with dynamic computation graphs.",
     rarity: "Epic Artifact",
     attributes: [
-      { name: "Neural Networks", value: 90 },
-      { name: "Model Training", value: 88 },
-      { name: "Deployment", value: 82 },
+      { name: "Neural Networks", value: 88 },
+      { name: "Custom Training Loops", value: 85 },
+      { name: "Model Optimization", value: 80 },
+    ],
+  },
+  {
+    name: "HuggingFace",
+    level: 82,
+    status: "EXPERT",
+    icon: "smart_toy",
+    iconBg: "bg-[#FFD21E]",
+    iconBorder: "border-[#b8960f]",
+    iconTextColor: "text-black",
+    description: "The premier hub for transformer models. Provides pretrained LLMs, tokenizers, and pipelines for NLP tasks including text classification, NER, and generative AI.",
+    rarity: "Epic Artifact",
+    attributes: [
+      { name: "Transformers API", value: 85 },
+      { name: "Fine-tuning", value: 82 },
+      { name: "Pipeline Integration", value: 80 },
     ],
   },
   {
     name: "React.js",
-    level: 78,
-    status: "1.2K XP TO LEVEL",
+    level: 75,
+    status: "ADVANCED",
     icon: "deployed_code",
     iconBg: "bg-blue-500",
     iconBorder: "border-blue-800",
     iconTextColor: "text-white",
-    description: "A component-based UI framework. Crafts dynamic user interfaces with reusable building blocks and state management.",
+    description: "A component-based UI framework. Crafts dynamic user interfaces with reusable building blocks, hooks, and state management patterns.",
     rarity: "Rare Artifact",
     attributes: [
-      { name: "Component Design", value: 82 },
-      { name: "State Management", value: 75 },
-      { name: "UI Architecture", value: 78 },
+      { name: "Component Design", value: 78 },
+      { name: "State Management", value: 72 },
+      { name: "UI Architecture", value: 75 },
     ],
   },
   {
-    name: "PostgreSQL",
-    level: 82,
+    name: "SQL",
+    level: 78,
     status: "EXPERT",
     icon: "database",
     iconBg: "bg-tertiary",
     iconBorder: "border-[#003848]",
     iconTextColor: "text-white",
-    description: "A robust relational database. Manages structured data with advanced querying, indexing, and transaction support.",
+    description: "A robust query language for relational databases. Manages structured data with advanced querying, indexing, joins, and transaction support across PostgreSQL and MySQL.",
     rarity: "Epic Artifact",
     attributes: [
-      { name: "Query Optimization", value: 85 },
-      { name: "Schema Design", value: 82 },
-      { name: "Data Integrity", value: 80 },
+      { name: "Query Optimization", value: 80 },
+      { name: "Schema Design", value: 78 },
+      { name: "Data Integrity", value: 76 },
     ],
   },
   {
-    name: "Apache Spark",
-    level: 70,
-    status: "ADVANCED",
-    icon: "electric_bolt",
-    iconBg: "bg-orange-600",
-    iconBorder: "border-orange-900",
-    iconTextColor: "text-white",
-    description: "A distributed computing engine. Processes massive datasets across clusters with lightning-fast in-memory computation.",
-    rarity: "Rare Artifact",
-    attributes: [
-      { name: "Distributed Processing", value: 72 },
-      { name: "Spark SQL", value: 68 },
-      { name: "Stream Processing", value: 65 },
-    ],
-  },
-  {
-    name: "AWS Cloud",
+    name: "Google Cloud",
     level: 65,
     status: "LEVEL UP READY",
     icon: "cloud",
     iconBg: "bg-blue-400",
     iconBorder: "border-blue-700",
     iconTextColor: "text-white",
-    description: "Cloud infrastructure mastery. Deploys and scales applications using serverless, containers, and managed services.",
+    description: "Cloud infrastructure mastery. Deploys and scales ML models and applications using Vertex AI, BigQuery, and managed Kubernetes.",
     rarity: "Uncommon Artifact",
     attributes: [
-      { name: "EC2 / Lambda", value: 70 },
-      { name: "S3 / RDS", value: 65 },
-      { name: "Infrastructure as Code", value: 58 },
+      { name: "Vertex AI", value: 68 },
+      { name: "BigQuery", value: 65 },
+      { name: "Cloud Functions", value: 60 },
     ],
   },
+];
+
+const SECONDARY_SKILLS = [
+  { name: "C++", level: 70, status: "ADVANCED", icon: "terminal", iconBg: "bg-indigo-600", iconBorder: "border-indigo-900", iconTextColor: "text-white" },
+  { name: "Node.js", level: 72, status: "ADVANCED", icon: "javascript", iconBg: "bg-green-600", iconBorder: "border-green-900", iconTextColor: "text-white" },
+  { name: "NLTK/NLP", level: 80, status: "EXPERT", icon: "translate", iconBg: "bg-purple-500", iconBorder: "border-purple-800", iconTextColor: "text-white" },
+  { name: "Keras", level: 75, status: "ADVANCED", icon: "layers", iconBg: "bg-red-500", iconBorder: "border-red-800", iconTextColor: "text-white" },
 ];
 
 export default function SkillsPage() {
@@ -123,10 +130,10 @@ export default function SkillsPage() {
             <div className="flex justify-between items-center mb-6">
               <h2 className="font-headline font-bold text-xl uppercase tracking-wider flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary">grid_view</span>
-                Hotbar Slots
+                Primary Hotbar
               </h2>
               <div className="text-xs font-bold bg-surface-dim px-2 py-1">
-                24 / 64 SLOTS USED
+                10 / 64 SLOTS USED
               </div>
             </div>
 
@@ -161,7 +168,7 @@ export default function SkillsPage() {
                     </div>
                     <div className={`mt-1 text-[10px] font-bold text-right uppercase ${
                       isSelected ? "text-primary" : "text-on-surface-variant"
-                    } ${skill.status.includes("XP") || skill.status.includes("READY") ? "italic" : ""}`}>
+                    } ${skill.status.includes("READY") ? "italic" : ""}`}>
                       {skill.status}
                     </div>
                     {isSelected && (
@@ -182,6 +189,56 @@ export default function SkillsPage() {
               <div className="bg-surface-dim/30 p-4 voxel-slot-inset border-2 border-surface-variant flex items-center justify-center opacity-50">
                 <span className="material-symbols-outlined text-surface-dim text-4xl">lock</span>
               </div>
+            </div>
+          </div>
+
+          {/* Secondary Inventory Row */}
+          <div className="bg-surface-container-high p-6 voxel-slab-shadow border-b-4 border-surface-dim mt-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="font-headline font-bold text-xl uppercase tracking-wider flex items-center gap-2">
+                <span className="material-symbols-outlined text-secondary">inventory_2</span>
+                Secondary Inventory
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {SECONDARY_SKILLS.map((skill) => (
+                <button
+                  key={skill.name}
+                  onClick={() => setSelectedSkill({
+                    ...skill,
+                    description: `A versatile tool in the developer's arsenal. ${skill.name} provides essential capabilities for building robust software systems.`,
+                    rarity: skill.status === "EXPERT" ? "Epic Artifact" : "Rare Artifact",
+                    attributes: [
+                      { name: "Proficiency", value: skill.level },
+                      { name: "Problem Solving", value: skill.level - 5 },
+                      { name: "Integration", value: skill.level - 8 },
+                    ],
+                  })}
+                  className={`text-left group bg-surface-container-low p-4 voxel-slot-inset border-2 transition-colors cursor-pointer relative overflow-hidden ${
+                    selectedSkill.name === skill.name
+                      ? "border-primary bg-primary/5"
+                      : "border-outline-variant hover:border-primary"
+                  }`}
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div className={`w-10 h-10 ${skill.iconBg} flex items-center justify-center border-b-4 ${skill.iconBorder}`}>
+                      <span className={`material-symbols-outlined ${skill.iconTextColor} text-2xl`}>
+                        {skill.icon}
+                      </span>
+                    </div>
+                    <span className="font-headline font-black text-xs text-on-surface-variant">
+                      LVL {skill.level}
+                    </span>
+                  </div>
+                  <h3 className="font-headline font-bold text-xs mb-1 uppercase">{skill.name}</h3>
+                  <div className="w-full bg-surface-dim h-1.5">
+                    <div className="bg-secondary h-full" style={{ width: `${skill.level}%` }} />
+                  </div>
+                  <div className="mt-1 text-[10px] font-bold text-on-surface-variant text-right uppercase">
+                    {skill.status}
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </div>

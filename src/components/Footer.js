@@ -13,7 +13,7 @@ export default function Footer() {
       </div>
       <div className="flex gap-6 uppercase font-headline font-bold tracking-tighter">
         <a
-          href="https://github.com/ankitbelvanshi"
+          href="https://github.com/AnkitBelvanshi"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition-colors duration-100"
@@ -21,7 +21,7 @@ export default function Footer() {
           Github
         </a>
         <a
-          href="https://linkedin.com/in/ankitbelvanshi"
+          href="https://linkedin.com/in/ankit-belvanshi"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition-colors duration-100"
@@ -29,7 +29,7 @@ export default function Footer() {
           LinkedIn
         </a>
         <a
-          href="mailto:ankitbelvanshi@email.com"
+          href="mailto:24mt0064@iitism.ac.in"
           className="hover:text-white transition-colors duration-100"
         >
           Email
