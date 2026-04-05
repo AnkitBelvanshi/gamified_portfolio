@@ -2,6 +2,7 @@ import { Space_Grotesk, Work_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SideHUD from "@/components/SideHUD";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-headline",
@@ -16,21 +17,23 @@ const workSans = Work_Sans({
 });
 
 export const metadata = {
-  title: "ANKIT.DEV | Gamified Developer Portfolio",
+  title: "ANKIT.DEV | ML Engineer & LLM Researcher",
   description:
-    "Ankit Belvanshi — Level 42 Data Scientist & Software Engineer. Crafting data worlds, one model at a time. Explore projects, skills, and quest log.",
+    "Ankit Belvanshi — ML Engineer & LLM Researcher @ IIT ISM Dhanbad. Building intelligent systems at the intersection of ML and LLMs.",
   keywords: [
     "Ankit Belvanshi",
-    "Data Scientist",
-    "Software Engineer",
-    "Portfolio",
-    "Machine Learning",
+    "ML Engineer",
+    "LLM Researcher",
+    "IIT ISM Dhanbad",
+    "NLP",
+    "RAG",
     "Python",
-    "TensorFlow",
+    "PyTorch",
+    "HuggingFace",
   ],
   openGraph: {
-    title: "ANKIT.DEV | Gamified Developer Portfolio",
-    description: "Level 42 Data Scientist — Crafting data worlds, one model at a time.",
+    title: "ANKIT.DEV | ML Engineer & LLM Researcher",
+    description: "ML Engineer & LLM Researcher @ IIT ISM Dhanbad — Building intelligent systems, one model at a time.",
     type: "website",
   },
 };
@@ -45,6 +48,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-screen font-body text-on-background overflow-x-hidden">
+        <SideHUD />
         <Navbar />
         <main>{children}</main>
         <Footer />
