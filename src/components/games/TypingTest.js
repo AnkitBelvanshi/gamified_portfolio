@@ -102,8 +102,15 @@ export default function TypingTest() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-stone-200 border-4 border-stone-800 shadow-[8px_8px_0px_0px_rgba(40,40,40,1)] p-6 pt-[40px] max-w-2xl w-full flex flex-col gap-6 relative overflow-y-auto max-h-[90vh] custom-scrollbar">
+        <>
+          <div 
+            style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9998 }}
+            className="bg-black/80 backdrop-blur-sm" 
+          />
+          <div 
+            style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 'min(700px, 90vw)', height: 'min(600px, 85vh)', overflowY: 'auto', padding: '40px 32px 32px 32px', zIndex: 9999, borderRadius: '0px' }}
+            className="bg-stone-200 border-4 border-stone-800 shadow-[8px_8px_0px_0px_rgba(40,40,40,1)] flex flex-col gap-6 relative custom-scrollbar"
+          >
             <button
               onClick={() => {
                 setIsOpen(false);
@@ -192,7 +199,7 @@ export default function TypingTest() {
                </div>
             )}
           </div>
-        </div>
+        </>
       )}
     </>
   );
