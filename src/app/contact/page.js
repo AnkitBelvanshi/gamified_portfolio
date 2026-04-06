@@ -29,8 +29,8 @@ const CONTACT_PORTALS = [
   {
     title: "EMAIL DISPATCH",
     subtitle: "Send a direct transmission...",
-    link: "mailto:24mt0064@iitism.ac.in",
-    linkText: "24mt0064@iitism.ac.in",
+    link: "mailto:workxankit@gmail.com",
+    linkText: "workxankit@gmail.com",
     icon: "mail",
     bgClass: "bg-secondary-container",
     borderClass: "border-on-secondary-fixed-variant",
