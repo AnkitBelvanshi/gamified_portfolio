@@ -104,11 +104,10 @@ export default function SideHUD() {
                 key={link.href}
                 href={link.href}
                 onClick={forceClose}
-                className={`flex items-center gap-3 p-3 font-headline text-sm uppercase font-bold transition-all duration-100 ${
-                  isActive
+                className={`flex items-center gap-3 p-3 font-headline text-sm uppercase font-bold transition-all duration-100 ${isActive
                     ? "bg-green-600 text-white shadow-[inset_4px_4px_0px_0px_rgba(0,0,0,0.2)]"
                     : "text-stone-600 hover:bg-stone-300 hover:translate-x-1"
-                }`}
+                  }`}
               >
                 <span
                   className="material-symbols-outlined"
@@ -164,7 +163,7 @@ export default function SideHUD() {
         {/* Download Resume */}
         <div className="mt-auto">
           <a
-            href="/ankit-belvanshi-resume.pdf"
+            href="https://drive.google.com/file/d/1ObDlJJ-NzU4Uj70W3NyHPtD6C9pLpCPr/view?usp=drive_link"
             download="Ankit-Belvanshi-Resume.pdf"
             id="resume-download-btn"
             className="block w-full py-4 bg-stone-700 text-white font-headline font-black uppercase tracking-widest text-center shadow-[0px_6px_0px_0px_rgba(40,40,40,1)] hover:shadow-[0px_2px_0px_0px_rgba(40,40,40,1)] hover:translate-y-1 transition-all duration-100"
