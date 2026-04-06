@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import SnakeGame from "./games/SnakeGame";
-import WhackABug from "./games/WhackABug";
-import TypingTest from "./games/TypingTest";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: "home" },
   { href: "/projects", label: "Projects", icon: "folder_open" },
   { href: "/skills", label: "Skills", icon: "bolt" },
   { href: "/contact", label: "Contact", icon: "mail" },
+  { href: "/games", label: "Games", icon: "sports_esports" },
 ];
 
 export default function Navbar() {
@@ -21,7 +19,11 @@ export default function Navbar() {
       {/* Hotbar Slots */}
       <div className="flex gap-1">
         {NAV_ITEMS.map((item) => {
-          const isActive = pathname === item.href;
+          // Highlight /games exactly or if we are inside an individual game like /games/snake
+          const isActive = item.href === "/" 
+            ? pathname === "/" 
+            : pathname.startsWith(item.href);
+
           return (
             <Link
               key={item.href}
@@ -43,16 +45,6 @@ export default function Navbar() {
             </Link>
           );
         })}
-
-        {/* Mini-Games Hotbar Slots */}
-        <SnakeGame />
-        <WhackABug />
-        <TypingTest />
-
-        {/* Empty Hotbar Slots */}
-        {[...Array(2)].map((_, i) => (
-          <div key={`empty-${i}`} className="w-14 h-14 bg-stone-300/30 hidden md:block" />
-        ))}
       </div>
     </nav>
   );

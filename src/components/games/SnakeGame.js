@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import Link from "next/link";
+import GameLayout from "./GameLayout";
 
-// Custom hook for intervals
 function useInterval(callback, delay) {
   const savedCallback = useRef();
 
@@ -25,12 +24,12 @@ function useInterval(callback, delay) {
 const GRID_SIZE = 20;
 
 export default function SnakeGame() {
-  const [isOpen, setIsOpen] = useState(false);
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
   const [food, setFood] = useState({ x: 15, y: 10 });
   const [dir, setDir] = useState({ x: 1, y: 0 });
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
 
   const canvasRef = useRef(null);
@@ -69,12 +68,14 @@ export default function SnakeGame() {
       // Wall collision
       if (newHead.x < 0 || newHead.x >= GRID_SIZE || newHead.y < 0 || newHead.y >= GRID_SIZE) {
         setGameOver(true);
+        if (score > highScore) setHighScore(score);
         return prev;
       }
 
       // Self collision
       if (prev.some((segment) => segment.x === newHead.x && segment.y === newHead.y)) {
         setGameOver(true);
+        if (score > highScore) setHighScore(score);
         return prev;
       }
 
@@ -90,13 +91,17 @@ export default function SnakeGame() {
 
       return newSnake;
     });
-  }, [dir, food, gameOver, gameStarted]);
+  }, [dir, food, gameOver, gameStarted, score, highScore]);
 
   useInterval(gameLoop, 100);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (!isOpen || gameOver) return;
+      if (gameOver) return;
+      // Prevent default scrolling for arrow keys if playing
+      if (gameStarted && ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+        e.preventDefault();
+      }
       switch (e.key) {
         case "ArrowUp":
         case "w":
@@ -122,12 +127,12 @@ export default function SnakeGame() {
           break;
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, dir, gameOver]);
+  }, [dir, gameOver, gameStarted]);
 
   useEffect(() => {
-    if (!isOpen || !canvasRef.current) return;
+    if (!canvasRef.current) return;
     const ctx = canvasRef.current.getContext("2d");
     const width = canvasRef.current.width;
     const height = canvasRef.current.height;
@@ -154,7 +159,7 @@ export default function SnakeGame() {
       ctx.stroke();
     }
 
-    if (gameStarted) {
+    if (gameStarted || gameOver) {
       // Draw food
       ctx.fillStyle = "#87ceeb"; // Light blue / cyan glowy center
       ctx.shadowBlur = 10;
@@ -189,11 +194,11 @@ export default function SnakeGame() {
         );
       });
     }
-  }, [snake, food, isOpen, gameStarted]);
+  }, [snake, food, gameStarted, gameOver]);
 
   const handleDpadControl = (e, newDir, currentAxis) => {
     e.preventDefault();
-    if (!gameStarted) resetGame();
+    if (!gameStarted && !gameOver) resetGame();
     if (gameOver) return;
     // Only allow directional change if not already moving on that axis
     if (currentAxis === "y" && dir.y === 0) setDir(newDir);
@@ -201,111 +206,88 @@ export default function SnakeGame() {
   };
 
   return (
-    <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="w-14 h-14 flex flex-col items-center justify-center gap-1 font-headline uppercase tracking-tighter font-bold text-[10px] cursor-pointer transition-transform duration-100 text-stone-600 hover:bg-stone-100 hover:translate-y-0.5 active:translate-y-1"
-      >
-        <span className="text-xl">🐍</span>
-        <span>SNAKE</span>
-      </button>
-
-      {isOpen && (
-        <>
-          <div 
-            style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9998 }}
-            className="bg-black/80 backdrop-blur-sm" 
+    <GameLayout 
+      title="SNAKE.3D"
+      themeColor="#4CAF50"
+      score={score}
+      hiScore={highScore}
+      level={Math.floor(score / 50) + 1}
+      speed="1x"
+    >
+      <div className="flex flex-col items-center gap-6 w-full max-w-md mx-auto">
+        
+        <div className="relative pixel-border bg-white p-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]">
+          <canvas
+            ref={canvasRef}
+            width={300}
+            height={300}
+            className="w-[300px] h-[300px] max-w-full block bg-white"
           />
-          <div 
-            style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 'min(700px, 90vw)', height: 'min(600px, 85vh)', overflowY: 'auto', padding: '40px 32px 32px 32px', zIndex: 9999, borderRadius: '0px' }}
-            className="bg-stone-200 border-4 border-stone-800 shadow-[8px_8px_0px_0px_rgba(40,40,40,1)] flex flex-col gap-4 relative custom-scrollbar"
-          >
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                setGameStarted(false);
-                setGameOver(false);
-              }}
-              className="absolute top-4 right-4 w-8 h-8 bg-stone-700 text-white flex items-center justify-center hover:bg-red-700 active:translate-y-0.5 transition-all duration-100 cursor-pointer voxel-button-shadow"
-            >
-              <span className="material-symbols-outlined text-lg">close</span>
-            </button>
-
-            <h2 className="font-headline font-black text-2xl text-stone-800 uppercase">
-              🐍 Snake
-            </h2>
-
-            <div className="flex flex-col items-center gap-4">
-              <div className="relative pixel-border bg-white p-2">
-                <canvas
-                  ref={canvasRef}
-                  width={300}
-                  height={300}
-                  className="w-[300px] h-[300px] max-w-full block bg-white"
-                />
-                
-                {!gameStarted && !gameOver && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                    <button
-                      onClick={resetGame}
-                      className="px-6 py-3 bg-green-600 text-white font-headline font-bold uppercase voxel-button-shadow pixel-border hover:bg-green-500"
-                    >
-                      START GAME
-                    </button>
-                  </div>
-                )}
-
-                {gameOver && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 gap-4">
-                    <div className="text-green-400 font-headline font-black text-2xl uppercase">
-                      +{score} XP EARNED
-                    </div>
-                    <button
-                      onClick={resetGame}
-                      className="px-6 py-3 bg-stone-700 text-white font-headline font-bold uppercase voxel-button-shadow pixel-border hover:bg-stone-600"
-                    >
-                      TRY AGAIN
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Mobile D-PAD */}
-              <div className="flex flex-col items-center gap-2 md:hidden mt-2">
-                <button
-                  onTouchStart={(e) => handleDpadControl(e, { x: 0, y: -1 }, "y")}
-                  className="w-14 h-14 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-xl font-bold rounded-none voxel-button-shadow active:bg-stone-700"
-                >
-                  ▲
-                </button>
-                <div className="flex gap-2">
-                  <button
-                    onTouchStart={(e) => handleDpadControl(e, { x: -1, y: 0 }, "x")}
-                    className="w-14 h-14 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-xl font-bold rounded-none voxel-button-shadow active:bg-stone-700"
-                  >
-                    ◀
-                  </button>
-                  <button
-                    onTouchStart={(e) => handleDpadControl(e, { x: 0, y: 1 }, "y")}
-                    className="w-14 h-14 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-xl font-bold rounded-none voxel-button-shadow active:bg-stone-700"
-                  >
-                    ▼
-                  </button>
-                  <button
-                    onTouchStart={(e) => handleDpadControl(e, { x: 1, y: 0 }, "x")}
-                    className="w-14 h-14 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-xl font-bold rounded-none voxel-button-shadow active:bg-stone-700"
-                  >
-                    ▶
-                  </button>
-                </div>
-              </div>
-              <p className="text-xs text-stone-500 font-body uppercase tracking-wider hidden md:block">
-                Use Arrow Keys or WASD to play
-              </p>
+          
+          {!gameStarted && !gameOver && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+              <button
+                onClick={resetGame}
+                className="px-6 py-3 bg-green-600 text-white font-headline font-bold uppercase voxel-button-shadow pixel-border hover:bg-green-500 hover:-translate-y-1 active:translate-y-0 transition-transform"
+              >
+                START GAME
+              </button>
             </div>
+          )}
+
+          {gameOver && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 gap-4">
+              <div className="text-green-400 font-headline font-black text-2xl uppercase">
+                GAME OVER
+              </div>
+              <div className="text-white font-headline font-bold uppercase">
+                Score: {score}
+              </div>
+              <button
+                onClick={resetGame}
+                className="px-6 py-3 bg-stone-700 text-white font-headline font-bold uppercase voxel-button-shadow pixel-border hover:bg-stone-600 hover:-translate-y-1 active:translate-y-0 transition-transform mt-2"
+              >
+                TRY AGAIN
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile D-PAD */}
+        <div className="flex flex-col items-center gap-2 md:hidden">
+          <button
+            onTouchStart={(e) => handleDpadControl(e, { x: 0, y: -1 }, "y")}
+            className="w-16 h-16 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-2xl font-bold rounded-none voxel-button-shadow active:bg-stone-700 active:translate-y-1 transition-transform"
+          >
+            ▲
+          </button>
+          <div className="flex gap-2">
+            <button
+              onTouchStart={(e) => handleDpadControl(e, { x: -1, y: 0 }, "x")}
+              className="w-16 h-16 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-2xl font-bold rounded-none voxel-button-shadow active:bg-stone-700 active:translate-y-1 transition-transform"
+            >
+              ◀
+            </button>
+            <button
+              onTouchStart={(e) => handleDpadControl(e, { x: 0, y: 1 }, "y")}
+              className="w-16 h-16 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-2xl font-bold rounded-none voxel-button-shadow active:bg-stone-700 active:translate-y-1 transition-transform"
+            >
+              ▼
+            </button>
+            <button
+              onTouchStart={(e) => handleDpadControl(e, { x: 1, y: 0 }, "x")}
+              className="w-16 h-16 bg-stone-800 border-4 border-green-600 text-white flex items-center justify-center text-2xl font-bold rounded-none voxel-button-shadow active:bg-stone-700 active:translate-y-1 transition-transform"
+            >
+              ▶
+            </button>
           </div>
-        </>
-      )}
-    </>
+        </div>
+        
+        <p className="text-xs text-stone-500 font-body uppercase tracking-wider hidden md:block text-center mb-0 mt-auto">
+          Use Arrow Keys or WASD to play
+        </p>
+
+      </div>
+    </GameLayout>
   );
 }
