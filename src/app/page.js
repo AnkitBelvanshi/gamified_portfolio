@@ -48,7 +48,7 @@ export default function HomePage() {
         {/* Voxel Island Container */}
         <div className="relative w-full max-w-5xl h-[600px] flex items-center justify-center pointer-events-none">
           {/* Central Voxel Illustration */}
-          <div className="relative w-full h-full flex items-center justify-center transform scale-110 lg:scale-125">
+          <div className="relative w-full h-full flex items-center justify-center transform scale-110 lg:scale-150">
             <img
               alt="Floating 3D voxel island"
               className="w-full h-full object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
